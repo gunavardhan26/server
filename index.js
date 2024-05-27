@@ -5,7 +5,7 @@ require("dotenv").config();
 const { users, employees, students } = require("./usermodel");
 //use the express
 var app = express();
-const PORT = 5000;
+const PORT = process.env.PORT;
 
 const connectDB = require("./connectMongoDB");
 
@@ -52,14 +52,14 @@ app.post("/register", async (req, res) => {
   } = req.body;
 
   if (
-    !username ||
-    !password ||
-    !fullname ||
-    !email ||
-    !phone ||
-    !country ||
-    !address ||
-    !gender
+    (!username ||
+      !password ||
+      !fullname ||
+      !email ||
+      !phone ||
+      !country ||
+      !address||
+    !gender)
   ) {
     return res
       .status(422)
@@ -267,7 +267,7 @@ app.put("/updateStudent/:id", async (req, res) => {
   try {
     // Find the doctor by ID and update the fields
     const updatedStudent = await students.findByIdAndUpdate(
-      req.params.sid,
+      req.params.id,
       {
         htno,
         fullname,
