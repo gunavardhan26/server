@@ -28,7 +28,7 @@ app.use(bodyParser.json());
 app.use(
   cors({
     // Allow requests from multiple origins, including your GitHub Pages site
-    origin="*"
+    origin:"*",
     optionsSuccessStatus: 200,
     methods: ["GET", "POST", "PUT", "DELETE"], // Methods you want to allow
     allowedHeaders: ["Content-Type", "Authorization"], // Headers to allow
